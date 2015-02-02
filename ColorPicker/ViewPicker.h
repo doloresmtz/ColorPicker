@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UISlider *slGreen;
 @property (strong, nonatomic) IBOutlet UISlider *slBlue;
 @property (strong, nonatomic) IBOutlet UISlider *slAlpha;
+@property (strong, nonatomic) IBOutlet UIButton *cmdBlink;
 
 
 
@@ -34,10 +35,6 @@
 - (IBAction)changeBlue:(id)sender;
 - (IBAction)changeRed:(id)sender;
 - (IBAction)changeAlpha:(id)sender;
-
-
-
-
 
 - (IBAction)clicBlink:(id)sender;
 

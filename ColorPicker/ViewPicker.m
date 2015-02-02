@@ -27,6 +27,7 @@ NSString *hex;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshColor];
+    self.lbBlink.text=[@(blink) stringValue];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -89,7 +90,7 @@ void setColor(int rcol,int gcol,int bcol, float al){
 }
 
 - (void)startTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.3f
                                                   target:self
                                                 selector:@selector(initBlink:)
                                                 userInfo:nil
@@ -99,18 +100,23 @@ void setColor(int rcol,int gcol,int bcol, float al){
 
 - (void)initBlink:(NSTimer *)timer {
     segundo++;
-    if (segundo==tiempo){
+    if (segundo>tiempo){
         [self.timer invalidate];
         self.timer = nil;
         setColor(rcolor, gcolor, bcolor, alpha);
+        segundo=0;
+        tiempo=0;
+        self.cmdBlink.enabled=true;
+        [self refreshColor];
     }else{
-    if((segundo % 2) == 0){
-        setColor(255, 255, 255, 255);
-    }else{
-        setColor(rcolor, gcolor, bcolor, alpha);
-    }
-    }
-    [self refreshColor];
+        if((segundo % 2) == 0){
+            NSLog(@"%d %@",segundo,@"par");
+            self.lbColor.backgroundColor=[UIColor whiteColor];
+        }else{
+            setColor(rcolor, gcolor, bcolor, alpha);
+            [self refreshColor];
+        }
+    }    
 }
 
 -(NSString*) formatHex:(NSString*)hex{
@@ -129,6 +135,7 @@ void setColor(int rcol,int gcol,int bcol, float al){
     [self refreshColor];
 }
 
+
 - (IBAction)changeGreen:(id)sender {
     [self refreshColor];
 }
@@ -140,6 +147,12 @@ void setColor(int rcol,int gcol,int bcol, float al){
 - (IBAction)clicBlink:(id)sender {
     self.lbBlink.text=[NSString stringWithFormat:@"%d",(int)self.stBlink.value];
     blink=self.stBlink.value;
+}
+
+- (IBAction)testBlink:(id)sender {
+    self.cmdBlink.enabled=false;
+    tiempo=blink*2;
+    [self startTimer];
 }
 
 
