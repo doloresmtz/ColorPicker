@@ -16,13 +16,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *lbBlue;
 @property (strong, nonatomic) IBOutlet UILabel *lbBlink;
 @property (strong, nonatomic) IBOutlet UITextField *txtColor;
-- (IBAction)changeGreen:(id)sender;
-- (IBAction)changeBlue:(id)sender;
-- (IBAction)changeRed:(id)sender;
-- (IBAction)changeBlink:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UISlider *slRed;
 @property (strong, nonatomic) IBOutlet UISlider *slGreen;
 @property (strong, nonatomic) IBOutlet UISlider *slBlue;
 @property (strong, nonatomic) IBOutlet UISlider *slBlink;
+
+- (IBAction)changeGreen:(id)sender;
+- (IBAction)changeBlue:(id)sender;
+- (IBAction)changeRed:(id)sender;
+- (IBAction)changeBlink:(id)sender;
+
+
 @end
 
